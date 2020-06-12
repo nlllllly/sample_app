@@ -9,10 +9,20 @@ class TodolistsController < ApplicationController
     list = List.new(list_params)
     # dbへ保存
     list.save
-    # topページへリダイレクトさせる
-    redirect_to '/top'
-
+    # 作成した内容の詳細ページへリダイレクトさせる
+    redirect_to todolist_path(list.id)
   end
+
+  def index
+    # 「index.html.erb」にリストの全てを表示する（全てなのでListsになっている）
+    @lists = List.all
+  end
+
+  def show
+    #findメソッドを使って、「id」を取得する
+    @list = List.find(params[:id])
+  end
+
 
   private
   # ストロングパラメータでコントローラから受け取る

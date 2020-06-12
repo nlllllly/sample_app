@@ -8,4 +8,12 @@ Rails.application.routes.draw do
 
   #「localhost:3000/todolists」にリクエストしたときに、「todolists_controller.rb」内の「create」アクションを呼び出す。
   post 'todolists' => 'todolists#create'
+
+  # 「localhost:3000/todolists」にアクセスしたら、「index.html.erb」にルーティングする。
+  get 'todolists' => 'todolists#index'
+
+  # 「localhost:3000/5」とかにアクセスしたら、「todolists」の「show」アクションにルーティングして、id で判別して「show.html.erb」にルーティングする。
+  get 'todolists/:id' => 'todolists#show', as: 'todolist'
+
+  
 end
