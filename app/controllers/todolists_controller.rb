@@ -33,6 +33,13 @@ class TodolistsController < ApplicationController
     redirect_to todolist_path(list.id)
   end
 
+  def destroy
+    # findで該当するidのデータを探し出して、それをdestroyする。最後に、indexページへリダイレクトする
+    list = List.find(params[:id])
+    list.destroy
+    redirect_to todolists_path
+  end
+
   private
   # ストロングパラメータでコントローラから受け取る
   def list_params
